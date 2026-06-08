@@ -22,7 +22,7 @@ pipeline {
             stages {
                 stage('deploy to preprod') {
                     steps {
-                        sh 'echo "deployment successful to preprod"'
+                        sh 'echo "deployment successful to preprod-1"'
                     }
                 }
             }
