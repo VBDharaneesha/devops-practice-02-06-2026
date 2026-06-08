@@ -1,0 +1,31 @@
+pipeline {
+    agent any 
+    parameters {
+        string(name: 'ENV', defaultValue: 'prod',description: 'this is nested script')
+    }
+    stages {
+        stage('build-stage') {
+            stages {
+                stage ('checking code') {
+                    steps {
+                        sh 'echo "code checking successful"'
+                    }
+                }
+                stage ('testing code') {
+                    steps {
+                        sh 'echo "code tested successful"'
+                    }
+                }
+            }
+        }
+        stage ('deploying to one more env') {
+            stages {
+                stage ('deploy to preprod') {
+                    steps {
+                        sh 'echo "deployment successful to preprod"'
+                    }
+                }
+            }
+        }
+    }
+}
