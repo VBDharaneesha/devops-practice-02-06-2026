@@ -1,5 +1,5 @@
 pipeline {
-    agent any 
+    agent any
     parameters {
         string(name: 'ENV', defaultValue: 'prod',description: 'this is nested script')
     }
