@@ -1,0 +1,54 @@
+pipeline {
+    agent any 
+
+    parameters {
+        string(name: 'ENV', defaultValue: 'demo', description: 'Target environment for the demo')
+    }
+
+    stages {
+        stage('Initial Step') {
+            steps {
+                echo "Starting parallel demo pipeline on ${params.ENV}..."
+            }
+        }
+
+        // The parent wrapper stage
+        stage('Run Tests in Parallel') {
+            parallel {
+                
+                stage('Unit Tests') {
+                    steps {
+                        echo "Running Unit Tests..."
+                        // Simulate a quick test execution
+                        sh 'sleep 2' 
+                        echo "Unit Tests Passed!"
+                    }
+                }
+
+                stage('Integration Tests') {
+                    steps {
+                        echo "Running Integration Tests..."
+                        // Simulating a slightly longer test
+                        sh 'sleep 4'
+                        echo "Integration Tests Passed!"
+                    }
+                }
+
+                stage('Security Scan') {
+                    steps {
+                        echo "Running SonarQube / Security Scans..."
+                        sh 'sleep 3'
+                        echo "Security Scan Passed!"
+                    }
+                }
+
+            }
+        }
+
+        stage('Final Deployment') {
+            steps {
+                echo "All parallel tests completed successfully. Deploying to ${params.ENV}!"
+            }
+        }
+    }
+}
