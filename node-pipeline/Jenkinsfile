@@ -23,5 +23,11 @@ pipeline {
                 sh 'top -bn1 | head -20'
             }
         }
+	stage ('list block') {
+	    steps {
+		sh 'lsblk'
+	    }
+	}
+	
     }
 }
