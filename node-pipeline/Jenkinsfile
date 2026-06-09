@@ -20,7 +20,7 @@ pipeline {
         }
         stage ('cpu-util') {
             steps {
-                sh 'top -bnl | head -20'
+                sh 'top -bn1 | head -20'
             }
         }
     }
