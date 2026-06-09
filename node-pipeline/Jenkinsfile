@@ -8,6 +8,11 @@ pipeline {
                 sh 'hostname -I'
             }
         }
+	stage ('host name') {
+	    steps {
+		sh 'hostname'
+            }
+	}
         stage ('Disk-util') {
             steps {
                 sh 'df -h'
