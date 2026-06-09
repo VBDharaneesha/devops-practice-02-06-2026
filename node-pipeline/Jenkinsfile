@@ -1,0 +1,27 @@
+pipeline {
+    agent {
+        label 'prod'
+    }
+    stages {
+        stage ('Ip Address') {
+            steps {
+                sh 'hostname -I'
+            }
+        }
+        stage ('Disk-util') {
+            steps {
+                sh 'df -h'
+            }
+        }
+        stage ('memory') {
+            steps {
+                sh 'free -h'
+            }
+        }
+        stage ('cpu-util') {
+            steps {
+                sh 'top -bnl | head -20'
+            }
+        }
+    }
+}
